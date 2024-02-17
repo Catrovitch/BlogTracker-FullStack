@@ -22,7 +22,21 @@ jobs:
       run: npm run lint
       working-directory: bloglist-frontend
 
+    # Frontend tests
+    - name: Run frontend tests
+      run: npm test
+      working-directory: bloglist-frontend
+
     # Backend ESLint check
     - name: Install backend dependencies
       run: npm install
+      working-directory: bloglist-backend
+
+    - name: Run ESLint for backend
+      run: npm run lint
+      working-directory: bloglist-backend
+
+    # Backend tests
+    - name: Run backend tests
+      run: npm test
       working-directory: bloglist-backend
