@@ -22,8 +22,6 @@ test('blogs are returned as json', async () => {
 
     const response = await api.get('/api/blogs')
 
-    console.log('Response.body: ', response.body)
-
     await api
         .get('/api/blogs')
         .expect(200)

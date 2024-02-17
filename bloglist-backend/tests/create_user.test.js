@@ -3,13 +3,11 @@ const supertest = require('supertest')
 const app = require('../app')
 const User = require('../models/user')
 
-beforeEach(async () => {
-  await User.deleteMany({})
-})
+
 
 describe('POST /api/users', () => {
-  afterAll(async () => {
-    await mongoose.connection.close()
+  beforeEach(async () => {
+    await User.deleteMany({})
   })
 
   test('creates a new user with valid data', async () => {
@@ -97,4 +95,8 @@ describe('POST /api/users', () => {
     expect(response.status).toBe(400);
     expect(response.body.error).toBe('User validation failed: username: Error, expected `username` to be unique. Value: `existing_user`');
   });
+
+  afterAll(async () => {
+    await mongoose.connection.close()
+  })
 });
