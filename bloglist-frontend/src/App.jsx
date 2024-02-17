@@ -85,7 +85,7 @@ const App = () => {
     event.preventDefault()
 
     try {
-      window.localStorage.removeItem('loggedBlogappUser');      
+      window.localStorage.removeItem('loggedBlogappUser')
       blogService.setToken(user.token)
       setUser('')
       setUsername('')
