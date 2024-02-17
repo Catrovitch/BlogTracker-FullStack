@@ -24,7 +24,7 @@ jobs:
 
     # Frontend tests
     - name: Run frontend tests
-      run: npm test
+      run: npm run test
       working-directory: bloglist-frontend
 
     # Backend ESLint check
@@ -34,5 +34,5 @@ jobs:
 
     # Backend tests
     - name: Run backend tests
-      run: npm test
+      run: npm run test
       working-directory: bloglist-backend
