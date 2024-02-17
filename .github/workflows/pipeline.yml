@@ -32,12 +32,9 @@ jobs:
       run: npm install
       working-directory: bloglist-backend
 
-    # Set up environment variables
-    - name: Set up environment variables
+    # Backend tests
+    - name: Run backend tests with TEST_MONGODB_URI
       env:
         TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-
-    # Backend tests
-    - name: Run backend tests
       run: npm run test
       working-directory: bloglist-backend
