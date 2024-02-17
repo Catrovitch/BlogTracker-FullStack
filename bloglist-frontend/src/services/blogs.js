@@ -22,10 +22,15 @@ const create = async newObject => {
   return response.data
 }
 
-const update = (id, newObject) => {
-  const request = axios.put(`${ baseUrl }/${id}`, newObject)
-  return request.then(response => response.data)
-}
+const update = async (id, newObject) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${id}`, newObject);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating blog:', error);
+    throw error; 
+  }
+};
 
 const deleteBlog = async (id) => {
   try {

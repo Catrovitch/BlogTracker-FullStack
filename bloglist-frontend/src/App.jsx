@@ -129,8 +129,8 @@ const App = () => {
 
   }
 
-  const likeBlog = (blog_id, blogObject) => {
-    blogService.update(blog_id, blogObject)
+  const likeBlog = async (blog_id, blogObject) => {
+    await blogService.update(blog_id, blogObject)
     setBlogUpdate(!blogUpdate)
   }
   const deleteBlog = async (blog_id) => {
