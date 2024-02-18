@@ -4,10 +4,12 @@
   "description": "Full-Stack-Open-BlogList",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
+    "build:ui": "rm -rf dist && cd ../bloglist-frontend/ && npm run build && cp -r dist ../bloglist-backend",
+    "start": "NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "fly logs",
     "start:test": "cross-env NODE_ENV=test node index.js"
   },
@@ -22,13 +24,13 @@
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
     "mongoose-unique-validator": "^4.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.3",
     "cross-env": "^7.0.3",
     "jest": "^29.6.4",
-    "jsonwebtoken": "^9.0.1",
     "nodemon": "^3.0.1",
     "supertest": "^6.3.3"
   },
