@@ -47,7 +47,5 @@ jobs:
     
     # Backend tests
     - name: Run backend tests with environment variables
-      run: |
-        echo "PORT=${{ secrets.PORT }}" > bloglist-backend/.env
-        echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> bloglist-backend/.env
-        npm run test && echo "NODE_ENV=${NODE_ENV}"
+      run:
+        npm run test
