@@ -41,16 +41,12 @@ jobs:
       run: npm install
       working-directory: bloglist-backend
 
-    # Set environment variables for backend
-    - name: Set environment variables for backend
-      env:
-        PORT: PORT XXXX
-        TEST_MONGODB_URI: TEST_MONGODB_URI
-        MONGODB_URI: MONGO_URI
-      run: echo "Environment variables set."
-
     # Backend tests
     - name: Run backend tests with environment variables
+      env:
+        PORT: ${{ secrets.PORT }}
+        TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+        MONGODB_URI: ${{ secrets.MONGO_URI }}
       working-directory: bloglist-backend
       run:
         npm run test -- tests/database_connection.test.js
