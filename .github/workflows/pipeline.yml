@@ -43,11 +43,12 @@ jobs:
 
     # Set environment variables for backend
     - name: Set environment variables for backend
-      working-directory: bloglist-backend
-      run: |
-        echo "PORT=${{ secrets.PORT }}" >> .env
-        echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> .env
-    
+      env:
+        PORT: ${{ secrets.PORT }}
+        TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+        MONGODB_URI: ${{ secrets.MONGO_URI }}
+      run: echo "Environment variables set."
+
     # Backend tests
     - name: Run backend tests with environment variables
       working-directory: bloglist-backend
