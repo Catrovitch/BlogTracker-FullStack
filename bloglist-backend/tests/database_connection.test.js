@@ -20,7 +20,7 @@ describe('Database Connection Test', () => {
   
       // Check if already connected
       if (mongoose.connection.readyState === 1) {
-        console.log('Already connected to the database.');
+        console.log('Already connected to the database...');
       } else {
         // Establish a connection to the MongoDB database
         await mongoose.connect(config.MONGODB_URI, {
