@@ -39,6 +39,7 @@ jobs:
       # Setting up MongoDB with docker-compose
       - name: Set up MongoDB
         run: docker-compose -f docker-compose.dev.yml up -d mongodb
+        working-directory: bloglist-backend
 
       # Setting up backend
       - name: Install backend dependencies
