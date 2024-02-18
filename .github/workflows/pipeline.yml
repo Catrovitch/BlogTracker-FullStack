@@ -81,7 +81,6 @@ jobs:
       - name: Start frontend
         run: npm run dev
         working-directory: bloglist-frontend
-        background: true
 
       - name: Run Cypress tests
         run: npm run cypress:headless
