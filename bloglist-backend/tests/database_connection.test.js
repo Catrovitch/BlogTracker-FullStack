@@ -3,7 +3,7 @@ const config = require('../utils/config');
 
 // Function to check if MONGODB_URI is defined and not empty
 const isMongoDBUriValid = () => {
-  const valid = config.MONGODB_URI && config.MONGODB_URI.length > 0;
+  const valid = config.MONGODB_URI.length > 0;
   console.log('Length of MONGODB_URI is not zero: ', valid);
   if (config.MONGODB_URI === "MONGODB_URI_HARDCODED") {
     console.log('Mongo db uri: MONGODB_URI_HARDCODED');
