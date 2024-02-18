@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const config = require('../utils/config');
 
 // Function to check if MONGODB_URI is defined and not empty
@@ -9,9 +8,6 @@ const isMongoDBUriValid = () => {
   console.log('Length of MONGO_URI:', config.MONGODB_URI.length)
   if (config.MONGODB_URI === "MONGODB_URI_HARDCODED") {
     console.log('Mongo db uri: MONGODB_URI_HARDCODED');
-  }
-  if (mongoose.connection.readyState === 1) {
-    console.log('Already connected to the database...');
   }
   return valid;
 };
