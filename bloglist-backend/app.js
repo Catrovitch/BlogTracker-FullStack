@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
 
-logger.info('connecting to', process.env.NODE_ENV, 'backend')
+logger.info('connecting to backend:', process.env.NODE_ENV)
 
 
 
