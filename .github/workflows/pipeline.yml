@@ -74,6 +74,15 @@ jobs:
       - name: Set up MongoDB
         run: docker-compose -f bloglist-backend/docker-compose.dev.yml up -d mongodb
 
+      - name: Start backend
+        run: npm run start:test
+        working-directory: bloglist-backend
+
+      - name: Start frontend
+        run: npm run dev
+        working-directory: bloglist-frontend
+        background: true
+
       - name: Run Cypress tests
-        run: npm run cypress:open
+        run: npm run cypress:headless
         working-directory: bloglist-frontend

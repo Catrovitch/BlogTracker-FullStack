@@ -9,4 +9,8 @@ testingRouter.post('/reset', async (request, response) => {
   response.status(204).end()
 })
 
+testingRouter.get('/ping', async (request, response) => {
+  response.status(204).end()
+})
+
 module.exports = testingRouter

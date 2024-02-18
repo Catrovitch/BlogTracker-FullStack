@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "server": "json-server -p3003 --watch db.json",
     "test": "jest",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:headless": "npx cypress run --headless --spec \"cypress/e2e/*.cy.js\""
   },
   "dependencies": {
     "axios": "^1.4.0",
