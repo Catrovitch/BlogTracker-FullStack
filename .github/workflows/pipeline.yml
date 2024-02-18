@@ -6,26 +6,33 @@ on:
       - main
 
 jobs:
-  build:
+  frontend:
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
 
-    # Frontend ESLint check
+    # Frontend Installing Dependencies
     - name: Install frontend dependencies
       run: npm install
       working-directory: bloglist-frontend
 
+    # Frotnend ESLint check
     - name: Run ESLint for frontend
       run: npm run lint
-      working-directory: bloglist-frontend
 
     # Frontend tests
     - name: Run frontend tests
       run: npm run test
-      working-directory: bloglist-frontend
+
+
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
 
     # Setting up backend
     - name: Install backend dependencies
@@ -41,8 +48,6 @@ jobs:
     # Backend tests
     - name: Run backend tests with environment variables
       run: |
-        echo "PORT=${{ secrets.PORT }}" > .env
-        echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> .env
+        echo "PORT=${{ secrets.PORT }}" > bloglist-backend/.env
+        echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> bloglist-backend/.env
         npm run test && echo "NODE_ENV=${NODE_ENV}"
-      working-directory: bloglist-backend
-

@@ -9,7 +9,7 @@ describe('Database Connection Test', () => {
     await mongoose.connect(config.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    });
+    }, 10000);
 
     try {
       // Check if the connection to the database is successful
