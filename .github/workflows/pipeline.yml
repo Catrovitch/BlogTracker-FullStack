@@ -75,6 +75,11 @@ jobs:
         run: docker-compose -f bloglist-backend/docker-compose.dev.yml up -d mongodb
 
       - name: Start backend
+        env:
+          PORT: ${{ secrets.PORT }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGO_URI }}
+          SECRET: ${{ secrets.SECRET }}
         run: npm run start:test
         working-directory: bloglist-backend
 
