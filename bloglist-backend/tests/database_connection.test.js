@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const config = require('../utils/config');
 
 // Function to check if MONGODB_URI is defined and not empty
