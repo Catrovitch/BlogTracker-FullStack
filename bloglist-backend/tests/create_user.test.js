@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 
 
-describe('POST /api/users', () => {
+describe('Create user tests', () => {
   beforeEach(async () => {
     await User.deleteMany({})
   })
