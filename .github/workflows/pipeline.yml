@@ -27,7 +27,7 @@ jobs:
       run: npm run test
       working-directory: bloglist-frontend
 
-    # Backend ESLint check
+    # Setting up backend
     - name: Install backend dependencies
       run: npm install
       working-directory: bloglist-backend
@@ -40,5 +40,9 @@ jobs:
     
     # Backend tests
     - name: Run backend tests with environment variables
-      run: npm run test && echo "NODE_ENV=${NODE_ENV}"
+      run: |
+        echo "PORT=${{ secrets.PORT }}" > .env
+        echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> .env
+        npm run test && echo "NODE_ENV=${NODE_ENV}"
       working-directory: bloglist-backend
+
