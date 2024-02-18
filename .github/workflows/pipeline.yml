@@ -33,20 +33,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    # Setting up backend
-    - name: Install backend dependencies
-      run: npm install
-      working-directory: bloglist-backend
+      # Setting up MongoDB with docker-compose
+      - name: Set up MongoDB
+        run: docker-compose -f docker-compose.dev.yml up -d mongodb
 
-    # Backend tests
-    - name: Run backend tests with environment variables
-      env:
-        PORT: ${{ secrets.PORT }}
-        TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        MONGODB_URI: ${{ secrets.MONGO_URI }}
-      working-directory: bloglist-backend
-      run:
-        npm run test -- tests/database_connection.test.js
+      # Setting up backend
+      - name: Install backend dependencies
+        run: npm install
+        working-directory: bloglist-backend
+
+      # Backend tests
+      - name: Run backend tests with environment variables
+        env:
+          PORT: ${{ secrets.PORT }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGO_URI }}
+        working-directory: bloglist-backend
+        run:
+          npm run test -- tests/database_connection.test.js
+
