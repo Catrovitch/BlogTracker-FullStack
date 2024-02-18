@@ -44,9 +44,9 @@ jobs:
     # Set environment variables for backend
     - name: Set environment variables for backend
       env:
-        PORT: ${{ secrets.PORT }}
-        TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        MONGODB_URI: ${{ secrets.MONGO_URI }}
+        PORT: PORT XXXX
+        TEST_MONGODB_URI: TEST_MONGODB_URI
+        MONGODB_URI: MONGO_URI
       run: echo "Environment variables set."
 
     # Backend tests
