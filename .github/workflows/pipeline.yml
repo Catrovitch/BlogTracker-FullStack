@@ -21,10 +21,12 @@ jobs:
     # Frotnend ESLint check
     - name: Run ESLint for frontend
       run: npm run lint
+      working-directory: bloglist-frontend
 
     # Frontend tests
     - name: Run frontend tests
       run: npm run test
+      working-directory: bloglist-frontend
 
 
   backend:
