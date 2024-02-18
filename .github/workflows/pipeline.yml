@@ -56,3 +56,23 @@ jobs:
         run:
           npm run test -- tests/database_connection.test.js
 
+  e2e_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: bloglist-frontend
+
+      - name: Install backend dependencies
+        run: npm install
+        working-directory: bloglist-backend
+
+      - name: Set up MongoDB
+        run: docker-compose -f bloglist-backend/docker-compose.dev.yml up -d mongodb
+
+      - name: Run Cypress tests
+        run: npm run cypress:run
+        working-directory: bloglist-frontend
