@@ -38,11 +38,7 @@ jobs:
         echo "PORT=${{ secrets.PORT }}" >> .env
         echo "TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }}" >> .env
     
-    # Print NODE_ENV
-    - name: Print NODE_ENV
-      run: echo "NODE_ENV=${NODE_ENV}"
-
     # Backend tests
     - name: Run backend tests with environment variables
-      run: npm run test --detectOpenHandles
+      run: npm run test && echo "NODE_ENV=${NODE_ENV}"
       working-directory: bloglist-backend
