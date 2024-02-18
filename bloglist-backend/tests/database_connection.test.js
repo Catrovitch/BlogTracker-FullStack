@@ -36,6 +36,6 @@ describe('Database Connection Test', () => {
         // Close the connection after the test
         await mongoose.connection.close();
       }
-    });
+    }, 50000);
   });
   
