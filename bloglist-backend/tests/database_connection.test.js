@@ -10,6 +10,9 @@ const isMongoDBUriValid = () => {
   if (config.MONGODB_URI === "MONGODB_URI_HARDCODED") {
     console.log('Mongo db uri: MONGODB_URI_HARDCODED');
   }
+  if (mongoose.connection.readyState === 1) {
+    console.log('Already connected to the database...');
+  }
   return valid;
 };
 
@@ -20,7 +23,7 @@ describe('Database Connection Test', () => {
   
       // Check if already connected
       if (mongoose.connection.readyState === 1) {
-        console.log('Already connected to the database...');
+        console.log('Already connected to the database');
       } else {
         // Establish a connection to the MongoDB database
         await mongoose.connect(config.MONGODB_URI, {
