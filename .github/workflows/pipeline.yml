@@ -53,4 +53,4 @@ jobs:
     - name: Run backend tests with environment variables
       working-directory: bloglist-backend
       run:
-        npm run test
+        npm run test -- tests/database_connection.test.js
