@@ -80,12 +80,15 @@ jobs:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           MONGODB_URI: ${{ secrets.MONGO_URI }}
           SECRET: ${{ secrets.SECRET }}
-        run: npm run start:test
+        run: npm run start:test &  # Run in background
         working-directory: bloglist-backend
 
       - name: Start frontend
-        run: npm run dev
+        run: npm run dev &  # Run in background
         working-directory: bloglist-frontend
+
+      - name: Wait for services to start
+        run: sleep 10  # Adjust sleep duration as needed to allow services to start
 
       - name: Run Cypress tests
         run: npm run cypress:headless
