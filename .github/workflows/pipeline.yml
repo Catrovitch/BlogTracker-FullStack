@@ -103,6 +103,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy if push event
         if: ${{ github.event_name == 'push' }}
-        run: flyctl deploy
+        working-directory: bloglist-backend
+        run: npm run deploy:full
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
