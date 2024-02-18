@@ -40,5 +40,5 @@ jobs:
 
     # Backend tests
     - name: Run backend tests with environment variables
-      run: npm run test
+      run: npm run test --detectOpenHandles
       working-directory: bloglist-backend
