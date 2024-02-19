@@ -101,9 +101,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Deploy if push event
+      - name: Frontend deployment preperation
+        if: ${{ github.event_name == 'push' }}
+        working-directory: bloglist-frontend
+        run: npm install
+
+      - name: Backend preperation + build + deployment
         if: ${{ github.event_name == 'push' }}
         working-directory: bloglist-backend
-        run: flyctl deploy
+        run: |
+          npm install
+          npm run deploy
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
