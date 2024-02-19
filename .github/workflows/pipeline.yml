@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  frontend:
+  frontend testing:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
       working-directory: bloglist-frontend
 
 
-  backend:
+  backend testing:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -113,7 +113,6 @@ jobs:
         run: |
           npm install
           npm run build:ui
-          npm run deploy
           flyctl deploy
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
