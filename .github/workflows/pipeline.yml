@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  frontend testing:
+  frontend_testing:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
       working-directory: bloglist-frontend
 
 
-  backend testing:
+  backend_testing:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -96,7 +96,7 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-20.04
-    needs: [frontend, backend, e2e_testing]
+    needs: [frontend_testing, backend_testing, e2e_testing]
 
     concurrency: deploy-group
     steps:
