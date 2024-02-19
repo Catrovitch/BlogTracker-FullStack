@@ -136,29 +136,29 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
 
-    notify_discord:
-      needs: [deploy]
-      runs-on: ubuntu-latest
-      if: always() && github.event_name == 'push'
-      steps:
-        - name: Send Discord Notification - Success
-          if: success()
-          uses: rjstone/discord-webhook-notify@v1
-          with:
-              severity: info
-              color: '#ff00aa'
-              description: See repo https://github.com/Catrovitch/BlogTracker-FullStack
-              text: The deployment succeeded!
-              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-        
-        - name: Send Discord Notification - Failure
-          if: failure()
-          uses: rjstone/discord-webhook-notify@v1
-          with:
-            severity: error
-            details: |
-              Build or deployment failed!
-              Failure details:
-              - Commit URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
-              - Commit Message: ${{ github.event.head_commit.message }}
+  notify_discord:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always() && github.event_name == 'push'
+    steps:
+      - name: Send Discord Notification - Success
+        if: success()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+            severity: info
+            color: '#ff00aa'
+            description: See repo https://github.com/Catrovitch/BlogTracker-FullStack
+            text: The deployment succeeded!
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      
+      - name: Send Discord Notification - Failure
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          details: |
+            Build or deployment failed!
+            Failure details:
+            - Commit URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+            - Commit Message: ${{ github.event.head_commit.message }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
