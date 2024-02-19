@@ -31,7 +31,6 @@ jobs:
 
   backend:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -97,6 +96,8 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-20.04
+    needs: [frontend, backend, e2e_testing]
+
     concurrency: deploy-group
     steps:
       - uses: actions/checkout@v3
